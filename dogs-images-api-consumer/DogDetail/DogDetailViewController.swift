@@ -9,7 +9,11 @@ import UIKit
 
 class DogDetailViewController: UIViewController {
     
-    var dogImageView = UIImageView()
+    var dogImageView: UIImageView = {
+        let uiImage = UIImageView();
+        uiImage.translatesAutoresizingMaskIntoConstraints = false
+        return uiImage
+    }()
     
     var heightLabel = UILabel()
     var heightValueLabel = UILabel()
@@ -31,6 +35,7 @@ class DogDetailViewController: UIViewController {
         labelsStackView.axis = .horizontal
         labelsStackView.distribution = .equalSpacing
         labelsStackView.alignment = .top
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         return labelsStackView
     }()
     
@@ -39,6 +44,7 @@ class DogDetailViewController: UIViewController {
         labelsStackView.axis = .horizontal
         labelsStackView.distribution = .equalSpacing
         labelsStackView.alignment = .top
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         return labelsStackView
     }()
     
@@ -47,6 +53,7 @@ class DogDetailViewController: UIViewController {
         labelsStackView.axis = .vertical
         //labelsStackView.spacing = 8
         labelsStackView.alignment = .top
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         return labelsStackView
     }()
     
@@ -55,6 +62,7 @@ class DogDetailViewController: UIViewController {
         labelsStackView.axis = .vertical
         labelsStackView.spacing = 8
         labelsStackView.alignment = .top
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
         return labelsStackView
     }()
     
@@ -131,10 +139,6 @@ class DogDetailViewController: UIViewController {
         view.addSubview(labelsHorizontalStackView)
         view.addSubview(bredGroupVerticalStackView)
         view.addSubview(sumaryVerticalStackView)
-        
-        labelsHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
-        bredGroupVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
-        sumaryVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureValues() {
@@ -164,13 +168,9 @@ A breed for \(dog.breed.first?.bredFor ?? "unknown").
         sumaryVerticalStackView.addArrangedSubview(sumaryValueLabel)
         
         view.addSubview(valuesHorizontalStackView)
-        
-        valuesHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureViewLayout() {
-        
-        dogImageView.translatesAutoresizingMaskIntoConstraints = false
         
         view.backgroundColor = .systemBackground
         
