@@ -13,6 +13,8 @@ struct Breed : Codable {
     let breedGroup: String?
     let lifeSpan: String?
     let temperament: String?
+    let weight: Weight
+    let height: Height
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -20,6 +22,8 @@ struct Breed : Codable {
         case breedGroup = "breed_group"
         case lifeSpan = "life_span"
         case temperament
+        case weight
+        case height
     }
     
     init(from decoder: Decoder) throws {
@@ -29,5 +33,7 @@ struct Breed : Codable {
         self.breedGroup = try container.decodeIfPresent(String.self, forKey: .breedGroup)
         self.lifeSpan = try container.decodeIfPresent(String.self, forKey: .lifeSpan)
         self.temperament = try container.decodeIfPresent(String.self, forKey: .temperament)
+        self.weight = try container.decode(Weight.self, forKey: .weight)
+        self.height = try container.decode(Height.self, forKey: .height)
     }
 }

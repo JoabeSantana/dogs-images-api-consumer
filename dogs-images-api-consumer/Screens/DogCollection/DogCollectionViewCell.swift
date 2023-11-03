@@ -11,7 +11,7 @@ final class DogCollectionViewCell: UICollectionViewCell {
     static var reuseIdentifier: String = "DogCollectionViewCell"
 
 
-    private let profileImageView: UIImageView = UIImageView()
+    private let dogImageView: UIImageView = UIImageView()
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -36,14 +36,14 @@ final class DogCollectionViewCell: UICollectionViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        profileImageView.image = nil
+        dogImageView.image = nil
         nameLabel.text = nil
     }
 
     func configure(character: Dog) {
         nameLabel.text = character.breed.first?.name
         ImageManager.shared.loadImage(from: URL(string: character.url)) { [weak self] image in
-            self?.profileImageView.image = image
+            self?.dogImageView.image = image
         }
     }
 }
@@ -52,19 +52,21 @@ final class DogCollectionViewCell: UICollectionViewCell {
 
 private extension DogCollectionViewCell {
     func configureImageView() {
-        contentView.addSubview(profileImageView)
+        contentView.addSubview(dogImageView)
 
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        dogImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        profileImageView.clipsToBounds = true
-        profileImageView.layer.cornerRadius = 0
+        dogImageView.clipsToBounds = true
+        dogImageView.layer.cornerRadius = 0
+        
+        dogImageView.contentMode = .scaleAspectFill
         
         NSLayoutConstraint.activate([
-            profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
-            profileImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
-            profileImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
-            profileImageView.heightAnchor.constraint(equalToConstant: 100),
-            profileImageView.widthAnchor.constraint(equalToConstant: 100),
+            dogImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            dogImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            dogImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            dogImageView.heightAnchor.constraint(equalToConstant: 100),
+            dogImageView.widthAnchor.constraint(equalToConstant: 100),
         ])
     }
 
@@ -74,9 +76,9 @@ private extension DogCollectionViewCell {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 5),
-            nameLabel.widthAnchor.constraint(equalTo: profileImageView.widthAnchor),
-            nameLabel.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
+            nameLabel.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 5),
+            nameLabel.widthAnchor.constraint(equalTo: dogImageView.widthAnchor),
+            nameLabel.centerXAnchor.constraint(equalTo: dogImageView.centerXAnchor),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
         ])
     }

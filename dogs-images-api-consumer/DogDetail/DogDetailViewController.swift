@@ -11,13 +11,52 @@ class DogDetailViewController: UIViewController {
     
     var dogImageView = UIImageView()
     
-    var nameLabel = UILabel()
+    var heightLabel = UILabel()
+    var heightValueLabel = UILabel()
     
-    private var bredForLabel = UILabel()
+    private var weightLabel = UILabel()
+    var weightValueLabel = UILabel()
     
-    private var breedGroupLabel = UILabel()
+    private var lifeSpanLabel = UILabel()
+    var lifeSpanValueLabel = UILabel()
     
-    private var labelsStackView = UIStackView()
+    private var bredGroupLabel = UILabel()
+    var bredGroupValueLabel = UILabel()
+    
+    private var sumaryLabel = UILabel()
+    private var sumaryValueLabel = UILabel()
+    
+    private var labelsHorizontalStackView: UIStackView = {
+        let labelsStackView = UIStackView()
+        labelsStackView.axis = .horizontal
+        labelsStackView.distribution = .equalSpacing
+        labelsStackView.alignment = .top
+        return labelsStackView
+    }()
+    
+    private var valuesHorizontalStackView: UIStackView = {
+        let labelsStackView = UIStackView()
+        labelsStackView.axis = .horizontal
+        labelsStackView.distribution = .equalSpacing
+        labelsStackView.alignment = .top
+        return labelsStackView
+    }()
+    
+    private var bredGroupVerticalStackView: UIStackView = {
+        let labelsStackView = UIStackView()
+        labelsStackView.axis = .vertical
+        //labelsStackView.spacing = 8
+        labelsStackView.alignment = .top
+        return labelsStackView
+    }()
+    
+    private var sumaryVerticalStackView: UIStackView = {
+        let labelsStackView = UIStackView()
+        labelsStackView.axis = .vertical
+        labelsStackView.spacing = 8
+        labelsStackView.alignment = .top
+        return labelsStackView
+    }()
     
     private var dog: Dog
     
@@ -34,6 +73,7 @@ class DogDetailViewController: UIViewController {
         super.viewDidLoad()
         configureImage()
         configureLabels()
+        configureValues()
         configureViewLayout()
         configureNavBar()
     }
@@ -54,55 +94,108 @@ class DogDetailViewController: UIViewController {
     private func configureImage () {
         guard let imageURL = URL(string: dog.url) else { return }
         dogImageView.load(url: imageURL)
+        dogImageView.heightAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
+        dogImageView.contentMode = .scaleToFill
         view.addSubview(dogImageView)
     }
     
     private func configureLabels() {
-        nameLabel.text = "Name: \(dog.breed.first?.name ?? "n/a")"
-        nameLabel.font = .preferredFont(forTextStyle: .title1)
-        nameLabel.textColor = .white
+        heightLabel.text = "Height"
+        heightLabel.font = .preferredFont(forTextStyle: .title3)
+        heightLabel.textColor = .white
         
-        bredForLabel.text = "Bred for: \(dog.breed.first?.bredFor ?? "n/a")"
-        bredForLabel.font = .preferredFont(forTextStyle: .title2)
-        bredForLabel.textColor = .white
+        weightLabel.text = "Weight"
+        weightLabel.font = .preferredFont(forTextStyle: .title3)
+        weightLabel.textColor = .white
         
-//        bredForLabel.text = "Temperament: \(dog.breed.first?.temperament ?? "n/a")"
-//        bredForLabel.font = .preferredFont(forTextStyle: .title2)
-//        bredForLabel.textColor = .white
+        lifeSpanLabel.text = "Life Span"
+        lifeSpanLabel.font = .preferredFont(forTextStyle: .title3)
+        lifeSpanLabel.textColor = .white
         
-        breedGroupLabel.text = "Species: \(dog.breed.first?.name ?? "n/a")"
-        breedGroupLabel.font = .preferredFont(forTextStyle: .title2)
-        breedGroupLabel.textColor = .white
+        bredGroupLabel.text = "Bred Group"
+        bredGroupLabel.font = .preferredFont(forTextStyle: .title3)
+        bredGroupLabel.textColor = .white
         
-        labelsStackView.axis = .vertical
-        labelsStackView.alignment = .leading
-        labelsStackView.spacing   = 4.0
+        sumaryLabel.text = "Sumary"
+        sumaryLabel.font = .preferredFont(forTextStyle: .title3)
+        sumaryLabel.textColor = .white
         
-        labelsStackView.addArrangedSubview(nameLabel)
-        labelsStackView.addArrangedSubview(bredForLabel)
-        labelsStackView.addArrangedSubview(breedGroupLabel)
+        labelsHorizontalStackView.addArrangedSubview(heightLabel)
+        labelsHorizontalStackView.addArrangedSubview(weightLabel)
+        labelsHorizontalStackView.addArrangedSubview(lifeSpanLabel)
         
-        view.addSubview(labelsStackView)
+        bredGroupVerticalStackView.addArrangedSubview(bredGroupLabel)
         
-        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        sumaryVerticalStackView.addArrangedSubview(sumaryLabel)
+        
+        view.addSubview(labelsHorizontalStackView)
+        view.addSubview(bredGroupVerticalStackView)
+        view.addSubview(sumaryVerticalStackView)
+        
+        labelsHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
+        bredGroupVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
+        sumaryVerticalStackView.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private func configureValues() {
+        heightValueLabel.text = "\(dog.breed.first?.height.imperial ?? "--")"
+        heightValueLabel.textColor = .white
+        
+        weightValueLabel.text = "\(dog.breed.first?.weight.imperial ?? "--")"
+        weightValueLabel.textColor = .white
+        
+        lifeSpanValueLabel.text = "\(dog.breed.first?.lifeSpan ?? "--")"
+        lifeSpanValueLabel.textColor = .white
+        
+        bredGroupValueLabel.text = "\(dog.breed.first?.breedGroup ?? "--")"
+        
+        sumaryValueLabel.text = """
+A dog of a temperament \(dog.breed.first?.temperament ?? "unknown").
+A breed for \(dog.breed.first?.bredFor ?? "unknown").
+"""
+        sumaryValueLabel.numberOfLines = 5
+        
+        valuesHorizontalStackView.addArrangedSubview(heightValueLabel)
+        valuesHorizontalStackView.addArrangedSubview(weightValueLabel)
+        valuesHorizontalStackView.addArrangedSubview(lifeSpanValueLabel)
+        
+        bredGroupVerticalStackView.addArrangedSubview(bredGroupValueLabel)
+        
+        sumaryVerticalStackView.addArrangedSubview(sumaryValueLabel)
+        
+        view.addSubview(valuesHorizontalStackView)
+        
+        valuesHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     private func configureViewLayout() {
         
         dogImageView.translatesAutoresizingMaskIntoConstraints = false
-        bredForLabel.translatesAutoresizingMaskIntoConstraints = false
-        breedGroupLabel.translatesAutoresizingMaskIntoConstraints = false
         
         view.backgroundColor = .systemBackground
+        
         NSLayoutConstraint.activate([
             dogImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             dogImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             dogImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             
-            labelsStackView.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 8.0),
-            labelsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
-            labelsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
-            labelsStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            labelsHorizontalStackView.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 8.0),
+            labelsHorizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
+            labelsHorizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            //labelsHorizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            valuesHorizontalStackView.topAnchor.constraint(equalTo: labelsHorizontalStackView.bottomAnchor, constant: 0),
+            valuesHorizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
+            valuesHorizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            
+            bredGroupVerticalStackView.topAnchor.constraint(equalTo: valuesHorizontalStackView.bottomAnchor, constant: 15),
+            bredGroupVerticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
+            bredGroupVerticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            
+            sumaryVerticalStackView.topAnchor.constraint(equalTo: bredGroupVerticalStackView.bottomAnchor, constant: 15),
+            sumaryVerticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
+            sumaryVerticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            
         ])
     }
 }
