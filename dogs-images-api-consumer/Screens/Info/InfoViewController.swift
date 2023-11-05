@@ -17,7 +17,7 @@ enum ListIdentifierEnum: String {
 
 class InfoViewController: UIViewController {
     
-    let studant = Student(name: "Joabe Santana Correia", id: 2373171007, email: "joabesantana.c@gmail.com", phone: "(61) 99161-3281", bio: "A student who became very interesting and became an iOS development Lover")
+    let studant = Student(name: "Joabe Santana Correia", id: 2373171007, email: "joabesantana.c@gmail.com", phone: "(61) 99161-3281", bio: "A student who became very interesting and became an iOS development Lover ❤️")
     
     var itemList: [ItemList] = []
     

@@ -61,7 +61,7 @@ final class DogCollectionViewController: UIViewController {
 extension DogCollectionViewController {
     func configureView() {
         
-        super.navigationItem.title = "The DOG API"
+        super.navigationItem.title = "Dog Breeds"
         self.view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
