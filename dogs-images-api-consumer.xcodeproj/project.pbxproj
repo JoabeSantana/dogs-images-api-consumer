@@ -12,6 +12,10 @@
 		96401DEB2AF4153D00B3AB8E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96401DEA2AF4153D00B3AB8E /* ViewController.swift */; };
 		96401DF02AF4153E00B3AB8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96401DEF2AF4153E00B3AB8E /* Assets.xcassets */; };
 		96401DF32AF4153E00B3AB8E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96401DF12AF4153E00B3AB8E /* LaunchScreen.storyboard */; };
+		968261E72AF6E5780094F8A9 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968261E62AF6E5780094F8A9 /* Student.swift */; };
+		968261E92AF6F3810094F8A9 /* StudentInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968261E82AF6F3810094F8A9 /* StudentInfoTableViewCell.swift */; };
+		968261EB2AF6F5360094F8A9 /* ItemList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968261EA2AF6F5360094F8A9 /* ItemList.swift */; };
+		96917E3E2AF6A6D1006E548C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96917E3D2AF6A6D1006E548C /* InfoViewController.swift */; };
 		96A467E62AF41EEF004A80C2 /* MainAppTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A467E52AF41EEF004A80C2 /* MainAppTabBarViewController.swift */; };
 		96A467E92AF43A54004A80C2 /* DogCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A467E82AF43A54004A80C2 /* DogCollectionViewController.swift */; };
 		96A467ED2AF43B86004A80C2 /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A467EC2AF43B86004A80C2 /* Dog.swift */; };
@@ -34,6 +38,10 @@
 		96401DEF2AF4153E00B3AB8E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96401DF22AF4153E00B3AB8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96401DF42AF4153E00B3AB8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		968261E62AF6E5780094F8A9 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		968261E82AF6F3810094F8A9 /* StudentInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInfoTableViewCell.swift; sourceTree = "<group>"; };
+		968261EA2AF6F5360094F8A9 /* ItemList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemList.swift; sourceTree = "<group>"; };
+		96917E3D2AF6A6D1006E548C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		96A467E52AF41EEF004A80C2 /* MainAppTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppTabBarViewController.swift; sourceTree = "<group>"; };
 		96A467E82AF43A54004A80C2 /* DogCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCollectionViewController.swift; sourceTree = "<group>"; };
 		96A467EC2AF43B86004A80C2 /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
@@ -93,9 +101,19 @@
 			path = "dogs-images-api-consumer";
 			sourceTree = "<group>";
 		};
+		96917E3C2AF6A69B006E548C /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				96917E3D2AF6A6D1006E548C /* InfoViewController.swift */,
+				968261E82AF6F3810094F8A9 /* StudentInfoTableViewCell.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
 		96A467E32AF41E84004A80C2 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				96917E3C2AF6A69B006E548C /* Info */,
 				96A467E72AF43A2E004A80C2 /* DogCollection */,
 				96A467E42AF41EB6004A80C2 /* Main App */,
 			);
@@ -127,6 +145,8 @@
 				96A467F32AF43C65004A80C2 /* DogResponse.swift */,
 				96A6CFBD2AF4797F00890ED8 /* Weight.swift */,
 				96A6CFBF2AF47A0700890ED8 /* Height.swift */,
+				968261E62AF6E5780094F8A9 /* Student.swift */,
+				968261EA2AF6F5360094F8A9 /* ItemList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -240,6 +260,7 @@
 				96A467FF2AF43FB8004A80C2 /* UIImageView.swift in Sources */,
 				96401DEB2AF4153D00B3AB8E /* ViewController.swift in Sources */,
 				96A6CFBE2AF4797F00890ED8 /* Weight.swift in Sources */,
+				968261E72AF6E5780094F8A9 /* Student.swift in Sources */,
 				96A467FB2AF43DD2004A80C2 /* DogDetailViewController.swift in Sources */,
 				96401DE72AF4153D00B3AB8E /* AppDelegate.swift in Sources */,
 				96A467ED2AF43B86004A80C2 /* Dog.swift in Sources */,
@@ -248,6 +269,9 @@
 				96A6CFC02AF47A0700890ED8 /* Height.swift in Sources */,
 				96A467E62AF41EEF004A80C2 /* MainAppTabBarViewController.swift in Sources */,
 				96A467F82AF43D61004A80C2 /* ImageManager.swift in Sources */,
+				968261E92AF6F3810094F8A9 /* StudentInfoTableViewCell.swift in Sources */,
+				96917E3E2AF6A6D1006E548C /* InfoViewController.swift in Sources */,
+				968261EB2AF6F5360094F8A9 /* ItemList.swift in Sources */,
 				96A467E92AF43A54004A80C2 /* DogCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +423,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,6 +451,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

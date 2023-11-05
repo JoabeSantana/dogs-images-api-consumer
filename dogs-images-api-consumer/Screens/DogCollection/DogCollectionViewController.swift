@@ -13,9 +13,7 @@ final class DogCollectionViewController: UIViewController {
     let service: DogService
     
     private let collectionView: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
-        
         layout.minimumLineSpacing = 5
         layout.minimumInteritemSpacing = 2
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
@@ -68,8 +66,8 @@ extension DogCollectionViewController {
 
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
@@ -109,8 +107,8 @@ extension DogCollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let currentDog = dogList[indexPath.row]
-        let dogDetailViewController = DogDetailViewController(character: currentDog)
+        let dogDetailViewController = DogDetailViewController(dog: currentDog)
         
-        navigationController?.pushViewController(dogDetailViewController, animated: false)
+        navigationController?.pushViewController(dogDetailViewController, animated: true)
     }
 }

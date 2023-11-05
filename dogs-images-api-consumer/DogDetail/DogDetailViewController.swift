@@ -9,6 +9,18 @@ import UIKit
 
 class DogDetailViewController: UIViewController {
     
+    var scrollView: UIScrollView = {
+        let scroll = UIScrollView()
+        scroll.translatesAutoresizingMaskIntoConstraints = false
+        return scroll
+    }()
+    
+    var scrollContainer: UIView = {
+        let uiView = UIView()
+        uiView.translatesAutoresizingMaskIntoConstraints = false
+        return uiView
+    }()
+    
     var dogImageView: UIImageView = {
         let uiImage = UIImageView();
         uiImage.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +80,8 @@ class DogDetailViewController: UIViewController {
     
     private var dog: Dog
     
-    init(character: Dog) {
-        self.dog = character
+    init(dog: Dog) {
+        self.dog = dog
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -104,28 +116,27 @@ class DogDetailViewController: UIViewController {
         dogImageView.load(url: imageURL)
         dogImageView.heightAnchor.constraint(equalToConstant: view.bounds.width).isActive = true
         dogImageView.contentMode = .scaleToFill
-        view.addSubview(dogImageView)
     }
     
     private func configureLabels() {
         heightLabel.text = "Height"
-        heightLabel.font = .preferredFont(forTextStyle: .title3)
+        heightLabel.font = .preferredFont(forTextStyle: .headline)
         heightLabel.textColor = .white
         
         weightLabel.text = "Weight"
-        weightLabel.font = .preferredFont(forTextStyle: .title3)
+        weightLabel.font = .preferredFont(forTextStyle: .headline)
         weightLabel.textColor = .white
         
         lifeSpanLabel.text = "Life Span"
-        lifeSpanLabel.font = .preferredFont(forTextStyle: .title3)
+        lifeSpanLabel.font = .preferredFont(forTextStyle: .headline)
         lifeSpanLabel.textColor = .white
         
         bredGroupLabel.text = "Bred Group"
-        bredGroupLabel.font = .preferredFont(forTextStyle: .title3)
+        bredGroupLabel.font = .preferredFont(forTextStyle: .headline)
         bredGroupLabel.textColor = .white
         
         sumaryLabel.text = "Sumary"
-        sumaryLabel.font = .preferredFont(forTextStyle: .title3)
+        sumaryLabel.font = .preferredFont(forTextStyle: .headline)
         sumaryLabel.textColor = .white
         
         labelsHorizontalStackView.addArrangedSubview(heightLabel)
@@ -135,10 +146,6 @@ class DogDetailViewController: UIViewController {
         bredGroupVerticalStackView.addArrangedSubview(bredGroupLabel)
         
         sumaryVerticalStackView.addArrangedSubview(sumaryLabel)
-        
-        view.addSubview(labelsHorizontalStackView)
-        view.addSubview(bredGroupVerticalStackView)
-        view.addSubview(sumaryVerticalStackView)
     }
     
     private func configureValues() {
@@ -166,36 +173,67 @@ A breed for \(dog.breed.first?.bredFor ?? "unknown").
         bredGroupVerticalStackView.addArrangedSubview(bredGroupValueLabel)
         
         sumaryVerticalStackView.addArrangedSubview(sumaryValueLabel)
-        
-        view.addSubview(valuesHorizontalStackView)
     }
     
     private func configureViewLayout() {
         
+        let contentLayoutGuide = scrollView.contentLayoutGuide
+        let frameLayoutGuide = scrollView.frameLayoutGuide
+        
         view.backgroundColor = .systemBackground
         
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollContainer)
+        
         NSLayoutConstraint.activate([
-            dogImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            dogImageView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            dogImageView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leadingAnchor.constraint (equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint (equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            scrollContainer.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor),
+            scrollContainer.leadingAnchor.constraint(equalTo: contentLayoutGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor),
+            scrollContainer.bottomAnchor.constraint(equalTo: contentLayoutGuide.bottomAnchor),
+            scrollContainer.heightAnchor.constraint(equalToConstant: 700)
+        ])
+        
+        scrollContainer.addSubview(dogImageView)
+        scrollContainer.addSubview(labelsHorizontalStackView)
+        scrollContainer.addSubview(valuesHorizontalStackView)
+        scrollContainer.addSubview(bredGroupVerticalStackView)
+        scrollContainer.addSubview(sumaryVerticalStackView)
+        
+        NSLayoutConstraint.activate([
+            scrollContainer.leadingAnchor.constraint(equalTo: contentLayoutGuide.leadingAnchor),     
+            scrollContainer.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor),
+            scrollContainer.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor),
+            scrollContainer.bottomAnchor.constraint(equalTo: contentLayoutGuide.bottomAnchor),
+            
+            scrollContainer.leadingAnchor.constraint(equalTo: frameLayoutGuide.leadingAnchor),
+            scrollContainer.trailingAnchor.constraint(equalTo: frameLayoutGuide.trailingAnchor),
+            
+            dogImageView.topAnchor.constraint(equalTo: scrollContainer.topAnchor),
+            dogImageView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            dogImageView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
             
             labelsHorizontalStackView.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 8.0),
-            labelsHorizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
-            labelsHorizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
-            //labelsHorizontalStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            labelsHorizontalStackView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            labelsHorizontalStackView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
             
             valuesHorizontalStackView.topAnchor.constraint(equalTo: labelsHorizontalStackView.bottomAnchor, constant: 0),
-            valuesHorizontalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
-            valuesHorizontalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            valuesHorizontalStackView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            valuesHorizontalStackView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
             
             bredGroupVerticalStackView.topAnchor.constraint(equalTo: valuesHorizontalStackView.bottomAnchor, constant: 15),
-            bredGroupVerticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
-            bredGroupVerticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
+            bredGroupVerticalStackView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            bredGroupVerticalStackView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
             
             sumaryVerticalStackView.topAnchor.constraint(equalTo: bredGroupVerticalStackView.bottomAnchor, constant: 15),
-            sumaryVerticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8.0),
-            sumaryVerticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8.0),
-            
+            sumaryVerticalStackView.leadingAnchor.constraint(equalTo: scrollContainer.leadingAnchor),
+            sumaryVerticalStackView.trailingAnchor.constraint(equalTo: scrollContainer.trailingAnchor),
         ])
     }
 }

@@ -8,20 +8,31 @@
 import UIKit
 
 final class DogCollectionViewCell: UICollectionViewCell {
+    
     static var reuseIdentifier: String = "DogCollectionViewCell"
-
-
-    private let dogImageView: UIImageView = UIImageView()
+    
+    private let dogImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.clipsToBounds = true
+        image.layer.cornerRadius = 0
+        image.contentMode = .scaleAspectFill
+        return image
+    }()
+    
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     override init(frame: CGRect) {
+        
         super.init(frame: frame)
+        
         configureImageView()
         configureLabels()
         
@@ -35,13 +46,17 @@ final class DogCollectionViewCell: UICollectionViewCell {
     }
 
     override func prepareForReuse() {
+        
         super.prepareForReuse()
+        
         dogImageView.image = nil
         nameLabel.text = nil
     }
 
     func configure(character: Dog) {
+        
         nameLabel.text = character.breed.first?.name
+        
         ImageManager.shared.loadImage(from: URL(string: character.url)) { [weak self] image in
             self?.dogImageView.image = image
         }
@@ -52,14 +67,8 @@ final class DogCollectionViewCell: UICollectionViewCell {
 
 private extension DogCollectionViewCell {
     func configureImageView() {
-        contentView.addSubview(dogImageView)
-
-        dogImageView.translatesAutoresizingMaskIntoConstraints = false
-
-        dogImageView.clipsToBounds = true
-        dogImageView.layer.cornerRadius = 0
         
-        dogImageView.contentMode = .scaleAspectFill
+        contentView.addSubview(dogImageView)
         
         NSLayoutConstraint.activate([
             dogImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
@@ -71,9 +80,8 @@ private extension DogCollectionViewCell {
     }
 
     func configureLabels() {
+        
         contentView.addSubview(nameLabel)
-
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: dogImageView.bottomAnchor, constant: 5),
