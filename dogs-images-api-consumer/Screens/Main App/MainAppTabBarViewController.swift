@@ -19,11 +19,18 @@ class MainAppTabBarViewController: UITabBarController {
         let dogCollectionNavigationController = UINavigationController(rootViewController: DogCollectionViewController())
         dogCollectionNavigationController.navigationBar.standardAppearance = appearance
         dogCollectionNavigationController.navigationBar.scrollEdgeAppearance = appearance
+        
+        let infoNavigationController = UINavigationController(rootViewController: InfoViewController())
+        infoNavigationController.navigationBar.standardAppearance = appearance
+        infoNavigationController.navigationBar.scrollEdgeAppearance = appearance
 
         dogCollectionNavigationController.tabBarItem = UITabBarItem(title: "Dogs", image: UIImage(systemName: "dog.circle"), tag: 1)
+        
+        infoNavigationController.tabBarItem = UITabBarItem(title: "Info", image: UIImage(systemName: "info.circle"), tag: 2)
 
         viewControllers = [
             dogCollectionNavigationController,
+            infoNavigationController,
         ]
 
     }
