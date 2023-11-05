@@ -4,7 +4,7 @@ A UIKit iOS project using MVC design pattern to show images of dog breeds and th
 
 Project format: Xcode 14.0
 
-To run this App you need to get a valid x-api key from https://www.thedogapi.com/signup and replace the content in the DogService class:
+To run this App you need to get a valid x-api-key key from https://www.thedogapi.com/signup and replace the content in the DogService class:
 
 request.allHTTPHeaderFields = [
     "x-api-key": "your-valid-x-api-key"
