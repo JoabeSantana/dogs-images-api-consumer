@@ -96,7 +96,7 @@ extension DogCollectionViewController: UICollectionViewDataSource {
         }
 
         let character = dogList[indexPath.row]
-        cell.configure(character: character)
+        cell.configure(dog: character)
         return cell
     }
 }

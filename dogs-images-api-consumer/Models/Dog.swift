@@ -11,7 +11,7 @@ struct Dog: Codable {
     
     let id: String
     let url: String
-    let breed: [Breed]
+    let breed: Breed?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -23,7 +23,8 @@ struct Dog: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
         self.url = try container.decode(String.self, forKey: .url)
-        self.breed = try container.decode([Breed].self, forKey: .breed)
+        let dogBreed = try container.decode([Breed].self, forKey: .breed)
+        self.breed = dogBreed.first
     }
     
     func encode(to encoder: Encoder) throws {

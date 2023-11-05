@@ -108,7 +108,7 @@ class DogDetailViewController: UIViewController {
     
     private func configureNavBar() {
         navigationItem.largeTitleDisplayMode = .never
-        title = dog.breed.first?.name
+        title = dog.breed?.name
     }
     
     private func configureImage () {
@@ -149,20 +149,20 @@ class DogDetailViewController: UIViewController {
     }
     
     private func configureValues() {
-        heightValueLabel.text = "\(dog.breed.first?.height.imperial ?? "--")"
+        heightValueLabel.text = "\(dog.breed?.height.imperial ?? "--")"
         heightValueLabel.textColor = .white
         
-        weightValueLabel.text = "\(dog.breed.first?.weight.imperial ?? "--")"
+        weightValueLabel.text = "\(dog.breed?.weight.imperial ?? "--")"
         weightValueLabel.textColor = .white
         
-        lifeSpanValueLabel.text = "\(dog.breed.first?.lifeSpan ?? "--")"
+        lifeSpanValueLabel.text = "\(dog.breed?.lifeSpan ?? "--")"
         lifeSpanValueLabel.textColor = .white
         
-        bredGroupValueLabel.text = "\(dog.breed.first?.breedGroup ?? "--")"
+        bredGroupValueLabel.text = "\(dog.breed?.breedGroup ?? "--")"
         
         sumaryValueLabel.text = """
-A dog of a temperament \(dog.breed.first?.temperament ?? "unknown").
-A breed for \(dog.breed.first?.bredFor ?? "unknown").
+A dog of a temperament \(dog.breed?.temperament?.lowercased() ?? "unknown").
+A dog breed for \(dog.breed?.bredFor?.lowercased() ?? "unknown").
 """
         sumaryValueLabel.numberOfLines = 5
         

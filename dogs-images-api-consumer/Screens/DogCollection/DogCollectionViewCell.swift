@@ -53,12 +53,12 @@ final class DogCollectionViewCell: UICollectionViewCell {
         nameLabel.text = nil
     }
 
-    func configure(character: Dog) {
+    func configure(dog: Dog) {
         
-        nameLabel.text = character.breed.first?.name
+        nameLabel.text = dog.breed?.name
         
-        ImageManager.shared.loadImage(from: URL(string: character.url)) { [weak self] image in
-            self?.dogImageView.image = image
+        ImageManager.shared.loadImage(from: URL(string: dog.url)) { 
+            [weak self] image in self?.dogImageView.image = image
         }
     }
 }
