@@ -105,7 +105,11 @@ class DogDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
+}
+
+// MARK: - UI Methods
+
+extension DogDetailViewController {
     private func configureNavBar() {
         navigationItem.largeTitleDisplayMode = .never
         title = dog.breed?.name
@@ -207,7 +211,7 @@ A dog breed for \(dog.breed?.bredFor?.lowercased() ?? "unknown").
         scrollContainer.addSubview(sumaryVerticalStackView)
         
         NSLayoutConstraint.activate([
-            scrollContainer.leadingAnchor.constraint(equalTo: contentLayoutGuide.leadingAnchor),     
+            scrollContainer.leadingAnchor.constraint(equalTo: contentLayoutGuide.leadingAnchor),
             scrollContainer.trailingAnchor.constraint(equalTo: contentLayoutGuide.trailingAnchor),
             scrollContainer.topAnchor.constraint(equalTo: contentLayoutGuide.topAnchor),
             scrollContainer.bottomAnchor.constraint(equalTo: contentLayoutGuide.bottomAnchor),
