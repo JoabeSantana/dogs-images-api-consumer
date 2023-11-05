@@ -44,10 +44,10 @@ final class DogCollectionViewController: UIViewController {
     
     func configureRefreshControl () {
         collectionView.refreshControl = UIRefreshControl()
-        collectionView.refreshControl?.addTarget(self, action: #selector(doSomething), for: .valueChanged)
+        collectionView.refreshControl?.addTarget(self, action: #selector(refreshDogBreedsList), for: .valueChanged)
     }
     
-    @objc func doSomething(refreshControl: UIRefreshControl) {
+    @objc func refreshDogBreedsList(refreshControl: UIRefreshControl) {
         fetchDogList()
     }
     

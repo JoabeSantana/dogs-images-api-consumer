@@ -78,7 +78,7 @@ class InfoViewController: UIViewController {
     }
     
     private func configureImage() {
-        profileImageView.load(url: URL(string: "https://lh3.googleusercontent.com/a/ACg8ocLnLHFqihy0FNOXJcnJIdG57P29JmN3GITw6L1jLUXEDwe_=s576-c-no"))
+        profileImageView.image = UIImage(named: "StudentImage")
     }
 
     private func configureListItem() {
