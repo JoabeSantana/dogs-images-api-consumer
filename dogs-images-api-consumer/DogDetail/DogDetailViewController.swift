@@ -125,23 +125,18 @@ extension DogDetailViewController {
     private func configureLabels() {
         heightLabel.text = "Height"
         heightLabel.font = .preferredFont(forTextStyle: .headline)
-        heightLabel.textColor = .white
         
         weightLabel.text = "Weight"
         weightLabel.font = .preferredFont(forTextStyle: .headline)
-        weightLabel.textColor = .white
         
         lifeSpanLabel.text = "Life Span"
         lifeSpanLabel.font = .preferredFont(forTextStyle: .headline)
-        lifeSpanLabel.textColor = .white
         
         bredGroupLabel.text = "Bred Group"
         bredGroupLabel.font = .preferredFont(forTextStyle: .headline)
-        bredGroupLabel.textColor = .white
         
         sumaryLabel.text = "Sumary"
         sumaryLabel.font = .preferredFont(forTextStyle: .headline)
-        sumaryLabel.textColor = .white
         
         labelsHorizontalStackView.addArrangedSubview(heightLabel)
         labelsHorizontalStackView.addArrangedSubview(weightLabel)
@@ -154,13 +149,10 @@ extension DogDetailViewController {
     
     private func configureValues() {
         heightValueLabel.text = "\(dog.breed?.height.imperial ?? "--")"
-        heightValueLabel.textColor = .white
         
         weightValueLabel.text = "\(dog.breed?.weight.imperial ?? "--")"
-        weightValueLabel.textColor = .white
         
         lifeSpanValueLabel.text = "\(dog.breed?.lifeSpan ?? "--")"
-        lifeSpanValueLabel.textColor = .white
         
         bredGroupValueLabel.text = "\(dog.breed?.breedGroup ?? "--")"
         
