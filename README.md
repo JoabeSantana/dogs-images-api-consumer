@@ -1,6 +1,6 @@
-# dogs-images-api-consumer
+# UIKit App to consume The Dog Api - MVC
 
-A UIKit iOS project using mvc design pattern to show images of dog breeds and their information.
+A UIKit iOS project using MVC design pattern to show images of dog breeds and their information.
 
 Project format: Xcode 14.0
 
